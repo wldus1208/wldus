@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace = "dev.mvc.users.UsersDAO">
+  <select id="read" resultType="dev.mvc.users.UsersVO" parameterType="int">
+    SELECT users_no, users_id, users_name, users_passwd, users_grade, users_gender, users_tel, 
+    		users_signdate, users_email, users_yn
+    FROM users
+    WHERE users_no = #{users_no}
+  </select>  
+
+  <select id="readById" resultType="dev.mvc.users.UsersVO" parameterType="String">
+    SELECT users_no, users_id, users_name, users_passwd, users_grade, users_gender, users_tel, 
+    		users_signdate, users_email, users_yn
+    FROM users
+    WHERE users_id = #{users_id}
+  </select>
+
+  <select id="login" resultType="int" parameterType="HashMap">
+    SELECT COUNT(users_no) as cnt
+    FROM users
+    WHERE users_id=#{users_id} AND users_passwd=#{users_passwd} AND users_yn="y"
+  </select>
+
+  <select id="checkID" resultType="int" parameterType="String">
+    SELECT COUNT(users_id) as cnt
+    FROM users
+    WHERE users_id=#{users_id}
+  </select>
+  
+  <insert id="create" parameterType="dev.mvc.users.UsersVO">
+  	INSERT INTO users(users_id, users_name, users_passwd, users_grade, users_gender, users_tel,
+  					  users_signdate, users_email)
+  	VALUES (#{users_id}, #{users_name}, #{users_passwd}, #{users_grade}, #{users_grade}, #{users_tel},
+  			now(), #{users_email})
+  </insert>
+  
+  <update id="remove" parameterType="dev.mvc.users.UsersVO">
+  	UPDATE users SET users_yn=#{users_yn}
+  	WHERE users_no=#{users_no}
+  </update>
+     
+</mapper> 

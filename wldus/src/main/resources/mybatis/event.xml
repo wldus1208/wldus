@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace = "dev.mvc.event.EventDAO">
+  <insert id="insert" parameterType="dev.mvc.event.EventVO">
+  	INSERT INTO event(id, arg_Y, name, tel, und_Y, date)
+  	VALUES (#{id}, #{arg_Y}, #{name}, #{tel}, #{und_Y}, now())
+  </insert>
+  
+  <select id="list" resultType="dev.mvc.event.EventVO" parameterType="int">
+  	select event2_no, title, reg_date, state
+	from event2
+	order by event2_no desc
+  </select>
+  
+  <insert id="create" parameterType="dev.mvc.event.EventVO">
+  	insert into event2(title, content, state, file1, file1saved, size1, reg_date)
+  	values (#{title}, #{content}, #{state}, #{file1}, #{file1saved}, #{size1}, now())
+  </insert>
+  
+  <select id="details" resultType="dev.mvc.event.EventVO" parameterType="int">
+  	select event2_no, title, content, reg_date, state, file1, file1saved, size1, cnt
+	from event2
+	where event2_no = #{event2_no}
+  </select>
+  
+  <delete id="delete" parameterType="int">
+    	DELETE FROM event2
+    	WHERE event2_no = #{event2_no}
+    </delete>
+</mapper> 
