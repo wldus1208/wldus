@@ -1,7 +1,9 @@
 package dev.mvc.event;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -135,4 +137,22 @@ public class EventCont {
 		mav.setViewName("redirect:/event/event.do");
 		return mav;
 	}
+	
+	@RequestMapping(value = {"/event/list.do"}, method = RequestMethod.GET)
+	public ModelAndView list_search(String keyword, String searchType) {
+	    ModelAndView mav = new ModelAndView();
+	    
+	    Map<String, Object> map = new HashMap();
+	    map.put("keyword", keyword);
+	    map.put("searchType", searchType);
+	    
+	    List<EventVO> list = this.eventService.list_search(map);
+	    mav.addObject("list", list); 
+	    
+	    int search_cnt = eventService.search_cnt(map);
+	    mav.addObject("search_cnt", search_cnt);
+	     
+	    mav.setViewName("/event/list");
+	    return mav;
+	  }
 }

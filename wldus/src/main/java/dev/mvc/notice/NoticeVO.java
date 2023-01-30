@@ -8,6 +8,7 @@ public class NoticeVO {
 	private String notice_content;
 	private String notice_rdate;
 	private String updatedate;
+	private int cnt;
 	
 	public NoticeVO() {
 		
@@ -59,6 +60,14 @@ public class NoticeVO {
 
 	public void setUpdatedate(String updatedate) {
 		this.updatedate = updatedate;
+	}
+
+	public int getCnt() {
+		return cnt;
+	}
+
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
 	}
 
 	@Override
