@@ -15,7 +15,18 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
-     
+
+<style type="text/css">
+	Button {
+		width: 150px;
+		height: 40px;
+		background-color: black;
+		color: white;
+	}
+	th {
+		background-color: #fffff0;
+	}
+</style> 
 </head> 
  
 <body>
@@ -26,12 +37,20 @@
 <DIV>
     <c:choose>
       <c:when test="${sessionScope.users_grade < 10}">
-        <A href="./create.do">등록</A>
+        <button type="button" onclick="location.href='./create.do'">등록</button>
       </c:when>
     </c:choose>
 
   <div style="text-align:center;">
   <table border="1" style='width: 100%;'>
+  	<colgroup>
+  		<col width="10%" />
+  		<col width="20%" />
+  		<col width="30%" />
+  		<col width="15%" />
+  		<col width="15%" />
+  		<col width="10%" />
+  	</colgroup>
      <thead>
       <tr>
         <th>NO</th>
@@ -39,6 +58,7 @@
 		<th>공지 내용</th>
 		<th>등록일</th>
 		<th>수정일</th>
+		<th>조회수</th>
       </tr>
     
     </thead> 
@@ -46,13 +66,14 @@
     <tbody>
       <c:forEach var="noticeVO" items="${list }">
         <c:set var="notice_no" value="${noticeVO.notice_no }" />
-        
+   
         <tr> 
           <td>${notice_no }</td>
           <td><a href="./details.do?notice_no=${notice_no}">${noticeVO.notice_title}</a></td> 
           <td><a href="./details.do?notice_no=${notice_no}">${noticeVO.notice_content}</a></td>
           <td>${noticeVO.notice_rdate}</td>
           <td>${noticeVO.updatedate}</td>
+          <td>${noticeVO.cnt}</td>
         </tr>
       </c:forEach>
       

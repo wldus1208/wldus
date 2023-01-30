@@ -70,7 +70,7 @@
     </li> 
     <li class="li_none">
 	    <div>
-	    	<button type="button" onclick="location.href='./event.do'">목록</button>
+	    	<button type="button" onclick="location.href='./list.do'">목록</button>
 	    </div>
     </li>
     </ul>

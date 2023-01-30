@@ -5,12 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component("dev.mvc.notice.NoticeProc")
-public class NoticeProc implements NoticeProcInter {
+@Component("dev.mvc.notice.NoticeService")
+public class NoticeService implements NoticeServiceImpl {
 	@Autowired
-	private NoticeDAOInter noticeDAO;
+	private NoticeDAO noticeDAO;
 	
-	public NoticeProc() {
+	public NoticeService() {
 		
 	}
 	
@@ -41,6 +41,12 @@ public class NoticeProc implements NoticeProcInter {
 	@Override
 	public int delete(int notice_no) {
 		int cnt = this.noticeDAO.delete(notice_no);
+		return cnt;
+	}
+
+	@Override
+	public int updateCnt(int notice_no) {
+		int cnt = this.noticeDAO.updateCnt(notice_no);
 		return cnt;
 	}
 

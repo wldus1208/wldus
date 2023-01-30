@@ -1,6 +1,7 @@
 package dev.mvc.event;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -53,6 +54,18 @@ public class EventService implements EventServiceImpl {
 	@Override
 	public int delete(int event2_no) {
 		int cnt = this.eventDAO.delete(event2_no);
+		return cnt;
+	}
+
+	@Override
+	public List<EventVO> list_search(Map<String, Object> map) {
+		List<EventVO> list = this.eventDAO.list_search(map);
+	    return list;
+	}
+
+	@Override
+	public int search_cnt(Map<String, Object> map) {
+		int cnt = this.eventDAO.search_cnt(map);
 		return cnt;
 	}
 

@@ -7,7 +7,7 @@
       <span style='padding-left: 0.5%;'></span>
       	<A class='menu_link'  href='/' >HOME</A><span class='top_menu_sep'></span>
       	<A class='menu_link'  href='/event/event.do' >이벤트</A><span class='top_menu_sep'></span>
-      	<!-- <A class='menu_link'  href='/notice/list.do'>공지사항</A><span class='top_menu_sep'></span> -->
+      	<A class='menu_link'  href='/notice/list.do'>공지사항</A><span class='top_menu_sep'></span>
       	<A class='menu_link'  href='#'>회원가입</A><span class='top_menu_sep'></span>
       	<c:choose>
         	<c:when test="${sessionScope.users_id == null}">

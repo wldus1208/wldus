@@ -17,8 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class NoticeCont {
 	@Autowired
-	@Qualifier("dev.mvc.notice.NoticeProc")
-	private NoticeProcInter noticeProc;
+	@Qualifier("dev.mvc.notice.NoticeService")
+	private NoticeServiceImpl noticeService;
 	
 	public NoticeCont() {
 		
@@ -35,7 +35,7 @@ public class NoticeCont {
 	public ModelAndView create(NoticeVO noticeVO) {
 		ModelAndView mav = new ModelAndView();
 		
-		int cnt = this.noticeProc.create(noticeVO);
+		int cnt = this.noticeService.create(noticeVO);
 		
 		mav.addObject("cnt", cnt);
 		mav.setViewName("redirect:/notice/list.do");
@@ -45,7 +45,8 @@ public class NoticeCont {
 	@RequestMapping(value="/notice/list.do", method=RequestMethod.GET )
 	public ModelAndView list(NoticeVO noticeVO) {
 	    ModelAndView mav = new ModelAndView();
-	    List<NoticeVO> list = this.noticeProc.list();
+	    List<NoticeVO> list = this.noticeService.list();
+	    
 	    mav.addObject("list", list);
 	    mav.setViewName("/notice/list"); 
 	    return mav; 
@@ -54,10 +55,14 @@ public class NoticeCont {
 	@RequestMapping(value="/notice/details.do", method=RequestMethod.GET )
 	public ModelAndView read(HttpServletRequest request, int notice_no) {
 		ModelAndView mav = new ModelAndView();
-		List<NoticeVO> list = this.noticeProc.list();
-		NoticeVO noticeVO = this.noticeProc.read(notice_no);
+		List<NoticeVO> list = this.noticeService.list();
+		NoticeVO noticeVO = this.noticeService.read(notice_no);
+		int cnt = this.noticeService.updateCnt(notice_no);
+		
 		mav.addObject("list", list);
 		mav.addObject("noticeVO", noticeVO);
+		mav.addObject("cnt", cnt);
+		System.out.print(noticeVO);
 		mav.setViewName("/notice/details");
 		return mav;
 	}
@@ -69,7 +74,7 @@ public class NoticeCont {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("notice_no", noticeVO.getNotice_no());
 		
-		int cnt = this.noticeProc.update(noticeVO);
+		int cnt = this.noticeService.update(noticeVO);
 		mav.addObject("cnt", cnt);
 		mav.addObject("notice_no", noticeVO.getNotice_no());
 		mav.setViewName("redirect:/notice/list.do");
@@ -80,10 +85,10 @@ public class NoticeCont {
 	@RequestMapping(value="/notice/delete.do", method=RequestMethod.GET )
 	public ModelAndView delete(int notice_no) {
 		ModelAndView mav = new ModelAndView();
-		NoticeVO noticeVO = this.noticeProc.read(notice_no);
+		NoticeVO noticeVO = this.noticeService.read(notice_no);
 		mav.addObject("noticeVO", noticeVO);
 		
-		int cnt = this.noticeProc.delete(notice_no);
+		int cnt = this.noticeService.delete(notice_no);
 		mav.addObject("cnt", cnt);
 
 		mav.setViewName("redirect:/notice/list.do");
