@@ -11,4 +11,6 @@ public interface EventServiceImpl {
 	public int delete(int event2_no);
 	public List<EventVO> list_search(Map<String, Object> map);
 	public int search_cnt(Map<String, Object> map);
+	public int updateCnt(int event2_no);
+
 }

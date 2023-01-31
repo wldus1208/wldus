@@ -26,12 +26,22 @@
 <jsp:include page="../menu/top.jsp" flush='false' />
 	<h3>LOGIN</h3>
 	<form name="form1" method="post">
+	<input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }">
+	<input type="hidden" name="return_url" value="${return_url}">
 	<div class="form-group">
   		<div class="form-floating mb-3">
-    		<input type="text" class="form-control" id="uses_id" name="users_id" placeholder="ID" style="width:30%" autofocus required>
+    		<input type="text" class="form-control" id="uses_id" name="users_id" value='${ck_id }' placeholder="ID" style="width:30%" autofocus required>
+  			<Label>   
+                <input type='checkbox' name='id_save' value='Y' 
+                          ${ck_id_save == 'Y' ? "checked='checked'" : "" }> 저장
+            </Label>  
   		</div>
   		<div class="form-floating">
-    	<input type="password" class="form-control" id="users_passwd" name="users_passwd" placeholder="Password" style="width:30%" required>
+    		<input type="password" class="form-control" id="users_passwd" name="users_passwd" value='${ck_passwd }' placeholder="Password" style="width:30%" required>
+  			<Label>
+                <input type='checkbox' name='passwd_save' value='Y' 
+                          ${ck_passwd_save == 'Y' ? "checked='checked'" : "" }> 저장
+            </Label>
   		</div>
 	</div>
 	<div>

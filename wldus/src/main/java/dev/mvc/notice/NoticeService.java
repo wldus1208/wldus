@@ -1,6 +1,7 @@
 package dev.mvc.notice;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -48,6 +49,12 @@ public class NoticeService implements NoticeServiceImpl {
 	public int updateCnt(int notice_no) {
 		int cnt = this.noticeDAO.updateCnt(notice_no);
 		return cnt;
+	}
+
+	@Override
+	public void Procedure(Map<String, Object> map) {
+		this.noticeDAO.Procedure(map);
+		
 	}
 
 }

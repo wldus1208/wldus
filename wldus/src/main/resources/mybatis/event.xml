@@ -34,36 +34,40 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <select id="list_search" resultType="dev.mvc.event.EventVO" parameterType="Map">
   	select event2_no, title, content, reg_date, state, file1, file1saved, size1, cnt
 	from event2
-	<!-- where
-		<choose>
-			<when test="searchType == 'title'">
-				AND title LIKE CONCAT('%',#{keyword},'%')
-			</when>
-			<when test="searchType == 'content'">
-				AND content LIKE CONCAT('%',#{keyword},'%')
-			</when>
-			<when test="searchType == 'titleAndContent'">
-				AND (title LIKE CONCAT('%',#{keyword},'%') or content LIKE CONCAT('%',#{keyword},'%'))
-			</when>
-		</choose> -->
+	<if test='searchType.equals("title")'>
+		where title like concat('%',#{keyword},'%')
+	</if>
+	<if test='searchType.equals("content")'>
+		where content like concat('%',#{keyword},'%')
+	</if>
+	<if test='searchType.equals("titleAndContent")'>
+		where title like concat('%',#{keyword},'%')
+			or content like concat('%',#{keyword},'%')
+	</if>
 	order by event2_no desc
   </select>  
   
   <select id="search_cnt" resultType="int" parameterType="Map">
   	select count(*) as cnt
 	from event2
-	<!-- where
-	<choose>
-		<when test="searchType == 'title'">
-			and title LIKE CONCAT('%', #{keyword}, '%')
-		</when>
-		<when test="searchType == 'content'">
-			and content LIKE CONCAT('%', #{keyword}, '%')
-		</when>
-		<when test="searchType == 'titleAndContent'">
-			and (title LIKE CONCAT('%', #{keyword}, '%') or content LIKE CONCAT('%', #{keyword}, '%'))
-		</when>
-	</choose> -->
+	<if test='searchType.equals("title")'>
+		where title like concat('%',#{keyword},'%')
+	</if>
+	<if test='searchType.equals("content")'>
+		where content like concat('%',#{keyword},'%')
+	</if>
+	<if test='searchType.equals("titleAndContent")'>
+		where title like concat('%',#{keyword},'%')
+			or content like concat('%',#{keyword},'%')
+	</if>
+	order by event2_no desc
 	
   </select>  
+  
+  <update id="updateCnt" parameterType="int">
+    	UPDATE event2
+    	SET cnt = cnt + 1
+    	WHERE event2_no = #{event2_no}
+  </update>
+  
 </mapper> 

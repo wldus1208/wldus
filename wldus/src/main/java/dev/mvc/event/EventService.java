@@ -69,4 +69,10 @@ public class EventService implements EventServiceImpl {
 		return cnt;
 	}
 
+	@Override
+	public int updateCnt(int event2_no) {
+		int cnt = this.eventDAO.updateCnt(event2_no);
+		return cnt;
+	}
+
 }

@@ -20,6 +20,7 @@
 </script>
 </head>
 <body>
+<jsp:include page="../menu/top.jsp" flush='false' />
 <div>
 	<div>
 		 <c:choose>
@@ -28,7 +29,14 @@
             	</c:when>
          </c:choose>
          <div>
-			<form action="">
+         		<select name="search">
+					<option <c:if test="${param.search == '공지' }">selected</c:if> value="공지">공지</option>
+					<option <c:if test="${param.search == '이벤트진행중' }">selected</c:if> value="이벤트진행중">이벤트 진행중</option>
+					<option <c:if test="${param.search == '이벤트종료' }">selected</c:if> value="이벤트종료">이벤트 종료</option>
+					<option <c:if test="${param.search == '기타' }">selected</c:if> value="기타">기타</option>
+				</select>
+			<form action="" style="display: inline-block;">
+			
 				<select name="searchType">
 					<option <c:if test="${param.searchType == 'title' }">selected</c:if> value="title">제목</option>
 					<option <c:if test="${param.searchType == 'content' }">selected</c:if> value="content">내용</option>
