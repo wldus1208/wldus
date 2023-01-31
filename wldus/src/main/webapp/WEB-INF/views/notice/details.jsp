@@ -31,7 +31,7 @@
 		}
 	}
 	
-	/* function details_ajax(notice_no) {
+	function details_ajax(notice_no) {
 		console.log("update");
 		$("#panel_details").hide();
 		$("#panel_update").show(); 
@@ -45,24 +45,23 @@
 			data: param,
 			success: function(rdata) {
 				console.log("param", param);
-				let event2_no = rdata.event2_no;
-				let title = rdata.title;
-				let content = rdata.content;
-				let state = rdata.state;
+				let notice_no = rdata.notice_no;
+				let notice_title = rdata.notice_title;
+				let notice_content = rdata.notice_content;
 				let frm_update = $("#frm_update");
-				$("#event2_no", frm_update).val(event2_no);
-				title = title.replaceAll("&nbsp;", " ");
-				$("#title", frm_update).val(title);
-				content = content.replaceAll("<BR>", "\n");
-				content = content.replaceAll("&nbsp;", " ");
-				$("#content", frm_update).val(content);
-				$("#state", frm_update).val(state);
+				$("#notice_no", frm_update).val(notice_no);
+				notice_title = notice_title.replaceAll("&nbsp;", " ");
+				$("#notice_title", frm_update).val(notice_title);
+				notice_content = notice_content.replaceAll("<BR>", "\n");
+				notice_content = notice_content.replaceAll("&nbsp;", " ");
+				$("#notice_content", frm_update).val(notice_content);
 				console.log("rdata", rdata);
 			},
 			error: function(request, status, error) { 
               console.log(error);
             }
-		} */
+		});
+	}
 		
 </script>
 </head>  
@@ -76,6 +75,7 @@
     </c:choose>
 </DIV>
 <div id="panel_details">
+		<input type-="text" value="${sessionScope.users_grade }">
 		<table style='width: 30%; text-align:center;'>
         	<tr>
         		<th>NO: </th>
@@ -102,7 +102,7 @@
 <div id="panel_update">
 	<form name='updateForm' method='POST' action='./update.do'>
 		<table style='width: 30%; text-align:center;'>
-        	<tr>
+        	<tr>  
         		<th>NO: </th>
         		<td><input name="notice_no" type="text" value="${noticeVO.notice_no }" readonly></td>
         	</tr>

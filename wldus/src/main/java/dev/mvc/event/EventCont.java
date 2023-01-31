@@ -119,7 +119,10 @@ public class EventCont {
 	    ModelAndView mav = new ModelAndView();
 	    
 	    EventVO eventVO = this.eventService.details(event2_no);
+	    int cnt = this.eventService.updateCnt(event2_no);
+	    
 	    mav.addObject("eventVO", eventVO);
+	    mav.addObject("cnt", cnt);
 	    mav.setViewName("/event/details");
 		return mav;
 	}
@@ -144,7 +147,7 @@ public class EventCont {
 	    
 	    Map<String, Object> map = new HashMap();
 	    map.put("keyword", keyword);
-	    map.put("searchType", searchType);
+	    map.put("searchType", searchType); 
 	    
 	    List<EventVO> list = this.eventService.list_search(map);
 	    mav.addObject("list", list); 
