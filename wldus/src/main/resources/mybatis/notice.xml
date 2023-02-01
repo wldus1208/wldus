@@ -42,7 +42,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </update>
     
     <select id="Procedure" parameterType="Map" statementType="CALLABLE">
-  		CALL ViewCnt(#{notice_no}, #{users_no})
+  		CALL ViewCnt(#{notice_no}, #{users_id})
+  	</select>
+  	
+  	<select id="join" resultType="dev.mvc.notice.NoticeVO">
+  		select u.nickname, n.notice_no, n.notice_title, n.notice_content, n.notice_rdate, n.updatedate, n.cnt
+		from users u, notice n
+		where u.users_no = n.users_no
+		order by n.notice_no desc
   	</select>
     
 </mapper> 

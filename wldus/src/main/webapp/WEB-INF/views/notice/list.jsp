@@ -44,16 +44,18 @@
   <div style="text-align:center;">
   <table border="1" style='width: 100%;'>
   	<colgroup>
-  		<col width="10%" />
+  		<col width="5%" />
   		<col width="40%" />
-  		<col width="15%" />
-  		<col width="15%" />
+  		<col width="10%" />
+  		<col width="10%" />
+  		<col width="10%" />
   		<col width="10%" />
   	</colgroup>
      <thead>
       <tr>
         <th>NO</th>
 		<th>제목</th>
+		<th>작성자</th>
 		<th>등록일</th>
 		<th>수정일</th>
 		<th>조회수</th>
@@ -68,6 +70,7 @@
         <tr> 
           <td>${notice_no }</td>
           <td><a href="./details.do?notice_no=${notice_no}">${noticeVO.notice_title}</a></td> 
+          <td>${noticeVO.nickname }</td>
           <td>${noticeVO.notice_rdate}</td>
           <td>${noticeVO.updatedate}</td>
           <td>${noticeVO.cnt}</td>

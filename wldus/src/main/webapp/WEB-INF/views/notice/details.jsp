@@ -75,7 +75,6 @@
     </c:choose>
 </DIV>
 <div id="panel_details">
-		<input type-="text" value="${sessionScope.users_grade }">
 		<table style='width: 30%; text-align:center;'>
         	<tr>
         		<th>NO: </th>

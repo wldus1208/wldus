@@ -34,6 +34,7 @@
 </head>
 <body>
 <jsp:include page="../menu/top.jsp" flush='false' />
+<div id="panel_details">
 	<fieldset class="fieldset_basic"> 
     <ul>
       	<li class="li_none">
@@ -41,7 +42,7 @@
           		<span style="font-size: 1.5em; font-weight: bold;">${eventVO.title}</span>
           		<c:choose>
             		<c:when test="${sessionScope.users_grade < 10 }">
-            			<button type="button" onclick="location.href='./#'">수정</button>
+            			<button type="button" id="btn_update">수정</button>
             			<button type="button" id="btn_delete">삭제</button>
             	</c:when>
             </c:choose>
@@ -56,8 +57,7 @@
                 	<IMG src="/event/images/ab.jpeg" style="width: 100%;"> 
               	</c:otherwise>
             </c:choose>
-        </DIV>
-		 
+        </DIV>	 
     
     <DIV style="font-size: 15px;">${eventVO.content }</DIV>
     </li>
@@ -75,5 +75,42 @@
     </li>
     </ul>
     </fieldset>
+</div>
+
+<div id="panel_update">
+	<form name='updateForm' method='POST' action='./update.do'>
+		<table style='width: 80%;'>
+        	<tr>
+				<th>구분</th>
+				<td>
+					<select name="state">
+						<option value="">선택</option>
+						<option value="공지">공지</option>
+						<option value="이벤트 진행중">이벤트 진행중</option>
+						<option value="기타">기타</option>
+					</select>
+				</td>
+			</tr>
+        	<tr>
+				<th>제목</th>
+				<td><input type="text" name="title" id="title"></td>
+			</tr>
+        	<tr>
+				<th>내용</th>
+				<td><textarea name="content" id=content style="height: 100px;"></textarea></td>
+			</tr>
+        	<tr>
+				<th></th>
+				<td>
+					<button type="button" onclick="location.href='./list.do'">목록</button>
+					<button type="submit">확인</button>
+					<button type="button" id="btn_cancel">취소</button>
+				</td>
+			</tr>
+		</table>
+		
+		
+	</form>
+</div>
 </body>
 </html>
