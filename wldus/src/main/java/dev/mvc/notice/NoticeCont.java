@@ -51,15 +51,15 @@ public class NoticeCont {
 		return mav;
 	}
 	
-	@RequestMapping(value="/notice/list.do", method=RequestMethod.GET )
-	public ModelAndView list(NoticeVO noticeVO) {
-	    ModelAndView mav = new ModelAndView();
-	    List<NoticeVO> list = this.noticeService.list();
-	    
-	    mav.addObject("list", list);
-	    mav.setViewName("/notice/list"); 
-	    return mav; 
-	}
+//	@RequestMapping(value="/notice/list.do", method=RequestMethod.GET )
+//	public ModelAndView list(NoticeVO noticeVO) {
+//	    ModelAndView mav = new ModelAndView();
+//	    List<NoticeVO> list = this.noticeService.list();
+//	    
+//	    mav.addObject("list", list);
+//	    mav.setViewName("/notice/list"); 
+//	    return mav; 
+//	}
 	
 	@RequestMapping(value="/notice/details.do", method=RequestMethod.GET )
 	public ModelAndView read(HttpServletRequest request, int notice_no) {
@@ -69,7 +69,11 @@ public class NoticeCont {
 		NoticeVO noticeVO = this.noticeService.read(notice_no);
 //		int cnt = this.noticeService.updateCnt(notice_no);
 		Map<String, Object> map = new HashMap();
+		HttpSession session = request.getSession();
+		String users_id = (String)session.getAttribute("users_id");
+		
 		map.put("notice_no", notice_no);
+		map.put("users_id", users_id);
 		
 		noticeService.Procedure(map);
 		
@@ -77,7 +81,7 @@ public class NoticeCont {
 		mav.addObject("noticeVO", noticeVO);
 		mav.addObject("map", map);
 //		mav.addObject("cnt", cnt);
-		System.out.print(noticeVO);
+	
 		mav.setViewName("/notice/details");
 		return mav;
 	}
@@ -122,6 +126,16 @@ public class NoticeCont {
 
 		mav.setViewName("redirect:/notice/list.do");
 		return mav;
+	}
+	
+	@RequestMapping(value="/notice/list.do", method=RequestMethod.GET )
+	public ModelAndView list(NoticeVO noticeVO) {
+	    ModelAndView mav = new ModelAndView();
+	    List<NoticeVO> list = this.noticeService.join();
+	    
+	    mav.addObject("list", list);
+	    mav.setViewName("/notice/list"); 
+	    return mav; 
 	}
 	
 }

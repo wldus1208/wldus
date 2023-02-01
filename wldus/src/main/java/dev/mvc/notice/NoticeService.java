@@ -57,4 +57,10 @@ public class NoticeService implements NoticeServiceImpl {
 		
 	}
 
+	@Override
+	public List<NoticeVO> join() {
+		List<NoticeVO> list = this.noticeDAO.join();
+		return list;
+	}
+
 }

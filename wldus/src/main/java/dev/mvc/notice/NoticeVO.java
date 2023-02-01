@@ -2,6 +2,8 @@ package dev.mvc.notice;
 
 public class NoticeVO {
 	
+	private String nickname;
+
 	private int notice_no;
 	private int users_no;
 	private String notice_title;
@@ -69,12 +71,20 @@ public class NoticeVO {
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
 	}
+	
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 
 	@Override
 	public String toString() {
 		return "NoticeVO [notice_no=" + notice_no + ", users_no=" + users_no + ", notice_title=" + notice_title
 				+ ", notice_content=" + notice_content + ", notice_rdate=" + notice_rdate + ", updatedate=" + updatedate
-				+ "]";
+				+ ", nickname=" + nickname + "]";
 	}
 		
 

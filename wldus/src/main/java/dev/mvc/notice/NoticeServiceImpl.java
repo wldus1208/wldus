@@ -11,4 +11,5 @@ public interface NoticeServiceImpl {
 	public int delete(int notice_no);
 	public int updateCnt(int notice_no);
 	public void Procedure(Map<String, Object> map);
+	public List<NoticeVO> join();
 }
